@@ -1,13 +1,33 @@
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
 /coverage/
 /spec/tmp
+/.idea/*
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
+
+.byebug_history
+/public/packs
+/public/packs-test
+/node_modules
 *.orig
 rerun.txt
 pickle-email-*.html
