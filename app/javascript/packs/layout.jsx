@@ -1,24 +1,32 @@
 import React from 'react'
 import Header from "./header";
-import Body from "./body";
+import Restaurants from "./Restaurants";
 
-export default class Layout extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            restaurants: []
-        }
-    }
+function get(url){
+    return fetch(url)
+        .then(response => response.json())
+}
 
-    setRestaurants(restaurants) {
-        this.setState({restaurants});
+export default class Layout extends React.Component {
+    state = {
+        restaurants: []
+    };
+
+    setRestaurants = (restaurants) => {
+        this.setState({ restaurants });
+    };
+
+    componentDidMount(){
+        get('/restaurants')
+            .then(this.setRestaurants)
+            .catch(console.error)
     }
 
     render(){
         return (
             <div>
                 <Header/>
-                <Body setRestaurants={this.setRestaurants.bind(this)} restaurants={this.state.restaurants}/>
+                <Restaurants setRestaurants={this.setRestaurants} restaurants={this.state.restaurants}/>
             </div>
         )
     }
