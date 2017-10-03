@@ -10,3 +10,8 @@
     width: 40px;
     display: inline-block;
 }
+
+.cuisine-font{
+    font-size: 30px;
+    font-family: ef_cuisinesregular;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import cuisineToSymbolMapper from '../services/cuisineToSymbolMapper'
 
 export default class Restaurant extends React.Component {
   render () {
@@ -10,7 +11,7 @@ export default class Restaurant extends React.Component {
         {restaurant.does_accept_10bis &&
         <span className='ten-bis-icon'></span>
         }
-        <p>&#33;</p>
+        <span className='cuisine-font'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
       </div>
     );
   }
