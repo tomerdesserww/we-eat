@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './header';
 import Restaurants from './Restaurants';
+import UpdateableSelectBox from './updateableSelectBox';
+import filtersProvider from '../services/filtersProvider';
 
 function get (url) {
   return fetch(url)
@@ -12,6 +14,7 @@ export default class Layout extends React.Component {
     restaurants: [],
     filtered: [],
     rating: 0,
+    cuisine: 'all'
   };
 
   setRestaurants = (restaurants) => {
@@ -26,16 +29,16 @@ export default class Layout extends React.Component {
 
   filter = () => {
     const filtered = [ ...this.state.restaurants ].filter(restaurant => {
-      return restaurant.restaurant_reviews_metadatum.avarage_score >= this.state.rating;
+      var isRatingEligible = restaurant.restaurant_reviews_metadatum.avarage_score >= this.state.rating;
+      var isCuisineEligible = this.state.cuisine == 'all' || this.state.cuisine == restaurant.cuisine.name;
+      return isRatingEligible && isCuisineEligible;
     });
 
     this.setState({ filtered });
   }
 
-  updateFilter = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    }, this.filter);
+  updateFilter = (a) => {
+    this.setState(a, this.filter);
   }
 
   render () {
@@ -46,12 +49,11 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Header/>
-        <select onChange={this.updateFilter} name="rating">
-          <option value="0">All</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-        </select>
+        {
+          filtersProvider.provide().map((filterData) => {
+          var filterName = Object.keys(filterData)[0];
+          return (<UpdateableSelectBox filterChange={this.updateFilter} filterName={filterName} values={filterData[filterName]} key={filterName}/>)
+        })}
         <Restaurants restaurants={filtered} />
       </div>
     );
