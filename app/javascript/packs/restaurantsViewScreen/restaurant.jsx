@@ -1,5 +1,5 @@
 import React from 'react';
-import cuisineToSymbolMapper from '../services/cuisineToSymbolMapper'
+import cuisineToSymbolMapper from '../../services/cuisineToSymbolMapper'
 
 export default class Restaurant extends React.Component {
   render () {

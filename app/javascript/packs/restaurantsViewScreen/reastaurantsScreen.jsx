@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from './header';
 import Restaurants from './restaurants';
-import UpdateableSelectBox from './updateableSelectBox';
-import filtersProvider from '../services/filtersProvider';
+import UpdateableSelectBox from '../updateableSelectBox';
+import filtersProvider from '../../services/filtersProvider';
 
 function get (url) {
   return fetch(url)
@@ -37,8 +36,8 @@ export default class RestaurantsScreen extends React.Component {
     this.setState({ filtered });
   }
 
-  updateFilter = (a) => {
-    this.setState(a, this.filter);
+  updateFilter = (filterToUpdate) => {
+    this.setState(filterToUpdate, this.filter);
   }
 
   render () {
@@ -48,7 +47,6 @@ export default class RestaurantsScreen extends React.Component {
 
     return (
       <div>
-        <Header/>
         {
           filtersProvider.provide().map((filterData) => {
             var filterName = Object.keys(filterData)[0];
