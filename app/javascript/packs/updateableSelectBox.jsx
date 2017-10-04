@@ -11,7 +11,7 @@ export default class UpdateableSelectBox extends React.Component {
   render () {
     var options = this.props.values.map((selectLine) => {
       var value = Object.keys(selectLine)[0];
-      return (<option value={value} key={value}>{selectLine[value]}</option>);
+      return (<option value={value}>{selectLine[value]}</option>);
     });
 
     return (
