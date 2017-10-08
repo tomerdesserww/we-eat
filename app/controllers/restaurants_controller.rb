@@ -9,11 +9,12 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    cuisine = Cuisine.find_by_name(params.require(:cuisine))
     restaurant = Restaurant.create!(name: params.require(:name),
                           address: params.require(:address),
                           does_accept_10bis: params.require(:does_accept_10bis),
                           delivery_sla_in_minutes: params.require(:delivery_sla_in_minutes),
-                          cuisine_id: params.require(:cuisine_id))
+                          cuisine_id: cuisine.id)
     render json: restaurant
   end
 

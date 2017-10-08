@@ -1,7 +1,24 @@
 import React from 'react';
-
+function post (url, data) {
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then(
+      response => function(){},
+      error => console.log('An error occurred.', error)
+    );
+}
 export default class CreateRestaurantScreen extends React.Component {
-  state = {};
+  state = {
+    name: '',
+    address: '',
+    cuisine: '',
+    does_accept_10bis: true,
+    delivery_sla_in_minutes: 0
+  };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -9,7 +26,7 @@ export default class CreateRestaurantScreen extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
+    post('/restaurants', this.state)
   };
 
   render () {
@@ -17,25 +34,32 @@ export default class CreateRestaurantScreen extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" name="rest_name" onChange={this.handleChange}/>
-        </label>
+          <input type="text" name="name" onChange={this.handleChange}/>
+        </label><br />
         <label>
           Address:
-          <input type="text" name="rest_address" onChange={this.handleChange}/>
-        </label>
-        <input type="checkbox" name="does_accepts_ten_bis" onChange={this.handleChange}/> Accept 10Bis
+          <input type="text" name="address" onChange={this.handleChange}/>
+        </label><br />
         <label>
-          Cuisine
-        <select onChange={this.handleChange} name="rest_cuisine">
+          Cuisine:
+        <select onChange={this.handleChange} name="cuisine" value='default'>
+          <option disabled='disabled' value='default'>Please Select</option>
           <option value='burger'>Burger</option>
           <option value='sushi'>Sushi</option>
           <option value='bakery'>Bakery</option>
         </select>
-        </label>
+        </label><br />
+        <label>
+          Accepts 10Bis?
+          <select onChange={this.handleChange} name="does_accept_10bis">
+            <option value='true'>Yes</option>
+            <option value='false'>No</option>
+          </select>
+        </label><br />
         <label>
           Delivery SLA:
-          <input type="select" name="rest_delivery_sla" onChange={this.handleChange}/>
-        </label>
+          <input type="select" name="delivery_sla_in_minutes" onChange={this.handleChange}/>
+        </label><br />
 
         <input type="submit" value="Submit"/>
       </form>
