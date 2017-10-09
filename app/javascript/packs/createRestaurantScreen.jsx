@@ -1,16 +1,6 @@
 import React from 'react';
-function post (url, data) {
-  fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }).then(
-      response => function(){},
-      error => console.log('An error occurred.', error)
-    );
-}
+import { restaurantsProvider } from '../services/restaurantsProvider';
+
 export default class CreateRestaurantScreen extends React.Component {
   state = {
     name: '',
@@ -26,7 +16,10 @@ export default class CreateRestaurantScreen extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    post('/restaurants', this.state)
+    restaurantsProvider.post('/restaurants', this.state).then(
+      response => this.props.history.push('/'),
+      error => console.log('An error occurred.', error)
+    );
   };
 
   render () {
@@ -42,7 +35,7 @@ export default class CreateRestaurantScreen extends React.Component {
         </label><br />
         <label>
           Cuisine:
-        <select onChange={this.handleChange} name="cuisine" value='default'>
+        <select onChange={this.handleChange} name="cuisine" defaultValue='default'>
           <option disabled='disabled' value='default'>Please Select</option>
           <option value='burger'>Burger</option>
           <option value='sushi'>Sushi</option>

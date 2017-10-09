@@ -4,7 +4,7 @@ class Restaurant < ApplicationRecord
   has_one :restaurant_reviews_metadatum
   after_create :create_restaurant_metadata
 
-  validates :name, :does_accept_10bis, :address, :delivery_sla_in_minutes, presence: true
+  validates :name, :address, :delivery_sla_in_minutes, presence: true
   validates :does_accept_10bis, inclusion: { in: [true, false] }
 
 

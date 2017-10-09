@@ -2,11 +2,7 @@ import React from 'react';
 import Restaurants from './restaurants';
 import UpdateableSelectBox from '../updateableSelectBox';
 import filtersProvider from '../../services/filtersProvider';
-
-function get (url) {
-  return fetch(url)
-    .then(response => response.json());
-}
+import { restaurantsProvider } from '../../services/restaurantsProvider';
 
 export default class RestaurantsScreen extends React.Component {
   state = {
@@ -21,14 +17,14 @@ export default class RestaurantsScreen extends React.Component {
   };
 
   componentWillMount () {
-    get('/restaurants')
+    restaurantsProvider.get('/restaurants')
       .then(this.setRestaurants)
       .catch(console.error);
   }
 
   filter = () => {
     const filtered = [ ...this.state.restaurants ].filter(restaurant => {
-      var isRatingEligible = restaurant.restaurant_reviews_metadatum.avarage_score >= this.state.rating;
+      var isRatingEligible = restaurant.restaurant_reviews_metadatum.avarage_score >= parseInt(this.state.rating);
       var isCuisineEligible = this.state.cuisine == 'all' || this.state.cuisine == restaurant.cuisine.name;
       return isRatingEligible && isCuisineEligible;
     });
@@ -50,7 +46,7 @@ export default class RestaurantsScreen extends React.Component {
         {
           filtersProvider.provide().map((filterData) => {
             var filterName = Object.keys(filterData)[0];
-            return (<UpdateableSelectBox filterChange={this.updateFilter} filterName={filterName} values={filterData[filterName]}/>)
+            return (<UpdateableSelectBox filterChange={this.updateFilter} filterName={filterName} values={filterData[filterName]} key={filterName}/>)
         })}
         <Restaurants restaurants={filtered} />
       </div>

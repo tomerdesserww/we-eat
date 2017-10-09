@@ -1,5 +1,5 @@
 import React from 'react'
-import Restaurant from "./restaurant";
+import Restaurant from "./restaurantLine";
 
 export default function Restaurants({restaurants}){
     return (

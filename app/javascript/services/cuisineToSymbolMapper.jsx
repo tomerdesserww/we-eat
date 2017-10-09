@@ -1,11 +1,13 @@
-export default class cuisineToSymbolMapper{
-  static cuisineSymboles = {
+export class CuisineToSymbolMapper{
+  cuisineSymboles = {
     bakery: 'Q',
     burger: 'A',
     sushi: 'I'
   };
 
-  static map(name) {
+  map(name){
     return this.cuisineSymboles[name];
   }
 }
+
+export let cuisineToSymbolMapper = new CuisineToSymbolMapper();
