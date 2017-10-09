@@ -1,8 +1,9 @@
-import React from 'react';
+  import React from 'react';
 import Restaurants from './restaurants';
 import UpdateableSelectBox from '../updateableSelectBox';
 import filtersProvider from '../../services/filtersProvider';
 import { restaurantsProvider } from '../../services/restaurantsProvider';
+  import RestaurantsMap from './restaurantsMap';
 
 export default class RestaurantsScreen extends React.Component {
   state = {
@@ -40,6 +41,7 @@ export default class RestaurantsScreen extends React.Component {
     const {
       filtered,
     } = this.state;
+    const markers = filtered.map(this.restaurantToMarker);
 
     return (
       <div>
@@ -49,7 +51,27 @@ export default class RestaurantsScreen extends React.Component {
             return (<UpdateableSelectBox filterChange={this.updateFilter} filterName={filterName} values={filterData[filterName]} key={filterName}/>)
         })}
         <Restaurants restaurants={filtered} />
+        <RestaurantsMap
+          googleMapURL='http://maps.googleapis.com/maps/api/js?key=AIzaSyBweDdXKekd2us6Ehkywk_p1UBpLEaJXkI&v=3.exp&libraries=geometry,drawing,places'
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          markers={markers}
+        />
       </div>
     );
+  }
+
+  restaurantToMarker(restaurant) {
+    const marker = {
+      id: restaurant.id,
+      position: {
+        lat: 32.0638841 + restaurant.id,
+        lng: 34.7735413 + restaurant.id
+      },
+      text: restaurant.name,
+    };
+
+    return marker;
   }
 }

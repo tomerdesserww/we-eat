@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    render json: Restaurant.find(params.require(:id))
+    render json: Restaurant.find_by_name(params.require(:id))
   end
 
   def create

@@ -35,7 +35,11 @@ export default class RestaurantScreen extends React.Component {
     const restaurant = this.state.restaurant;
 
     this.setState({
-      restaurant: { ...restaurant, reviews: [...restaurant.reviews, review] }
+      restaurant: {
+        ...restaurant,
+        reviews: [...restaurant.reviews, review]
+      },
+      shouldShowAddReview: false
     })
   }
 
@@ -47,7 +51,7 @@ export default class RestaurantScreen extends React.Component {
         <span className='three-stars'
               style={{ width: 14 * restaurant.restaurant_reviews_metadatum.avarage_score }}/>
         <span className='cuisine-font'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
-        {restaurant.does_accept_10bis &&
+        { restaurant.does_accept_10bis &&
         <span className='ten-bis-icon'></span>
         }
         { restaurant.reviews.map(item => <ReviewLine review={item} key={item.reviewer}/>) }
