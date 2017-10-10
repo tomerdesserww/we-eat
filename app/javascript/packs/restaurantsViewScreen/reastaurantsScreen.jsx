@@ -10,7 +10,8 @@ export default class RestaurantsScreen extends React.Component {
     restaurants: [],
     filtered: [],
     rating: 0,
-    cuisine: 'all'
+    cuisine: 'all',
+    maximumDeliveryTime: 'all'
   };
 
   setRestaurants = (restaurants) => {
@@ -27,7 +28,8 @@ export default class RestaurantsScreen extends React.Component {
     const filtered = [ ...this.state.restaurants ].filter(restaurant => {
       var isRatingEligible = restaurant.restaurant_reviews_metadatum.avarage_score >= parseInt(this.state.rating);
       var isCuisineEligible = this.state.cuisine == 'all' || this.state.cuisine == restaurant.cuisine.name;
-      return isRatingEligible && isCuisineEligible;
+      var isDeliveryTimeEligible = this.state.maximumDeliveryTime == 'all' || this.state.maximumDeliveryTime >= restaurant.delivery_sla_in_minutes
+      return isRatingEligible && isCuisineEligible && isDeliveryTimeEligible;
     });
 
     this.setState({ filtered });
@@ -66,8 +68,8 @@ export default class RestaurantsScreen extends React.Component {
     const marker = {
       id: restaurant.id,
       position: {
-        lat: 32.0638841 + restaurant.id,
-        lng: 34.7735413 + restaurant.id
+        lat: restaurant.restaurant_reviews_metadatum.restaurant_location_lat,
+        lng: restaurant.restaurant_reviews_metadatum.restaurant_location_lng
       },
       text: restaurant.name,
     };

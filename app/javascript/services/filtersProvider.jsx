@@ -16,7 +16,15 @@ export default class cuisineToSymbolMapper {
           { sushi: 'Sushi' },
           { bakery: 'Bakery' }
         ]
+      },
+      {
+        maximumDeliveryTime: [
+          {all: 'Any time'},
+          {15: '15 Minutes'},
+          {60: '60 Minutes'},
+          {120: '120 Minutes'}
+        ]
       }
-    ]
+    ];
   }
 }

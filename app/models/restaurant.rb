@@ -7,9 +7,11 @@ class Restaurant < ApplicationRecord
   validates :name, :address, :delivery_sla_in_minutes, presence: true
   validates :does_accept_10bis, inclusion: { in: [true, false] }
 
+  attr_accessor :lng, :lat
+
 
 
   def create_restaurant_metadata
-    create_restaurant_reviews_metadatum(reviews_count: 0, avarage_score: 0)
+    create_restaurant_reviews_metadatum(reviews_count: 0, avarage_score: 0, restaurant_location_lng: lng, restaurant_location_lat: lat)
   end
 end

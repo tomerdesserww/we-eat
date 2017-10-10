@@ -14,7 +14,10 @@ class RestaurantsController < ApplicationController
                           address: params.require(:address),
                           does_accept_10bis: params.require(:does_accept_10bis),
                           delivery_sla_in_minutes: params.require(:delivery_sla_in_minutes),
-                          cuisine_id: cuisine.id)
+                          lng: params.require(:lng),
+                          lat: params.require(:lat),
+                          cuisine_id: cuisine.id
+                          )
     render json: restaurant
   end
 

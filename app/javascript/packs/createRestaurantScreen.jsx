@@ -1,5 +1,6 @@
 import React from 'react';
 import { restaurantsProvider } from '../services/restaurantsProvider';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 
 export default class CreateRestaurantScreen extends React.Component {
   state = {
@@ -14,13 +15,20 @@ export default class CreateRestaurantScreen extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  updateAddress = (address) =>{
+    this.setState({ 'address': address });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
+    geocodeByAddress(this.state.address).then(results => {
+    const location = results[0].geometry.location;
+    this.setState({lat: location.lat(), lng: location.lng()});
     restaurantsProvider.post('/restaurants', this.state).then(
       response => this.props.history.push('/'),
       error => console.log('An error occurred.', error)
-    );
-  };
+    )}
+  )};
 
   render () {
     return (
@@ -31,7 +39,8 @@ export default class CreateRestaurantScreen extends React.Component {
         </label><br />
         <label>
           Address:
-          <input type="text" name="address" onChange={this.handleChange}/>
+          <PlacesAutocomplete inputProps={{ onChange: this.updateAddress, value: this.state.address, placeholder: 'Address..', name: 'address'}}
+          />
         </label><br />
         <label>
           Cuisine:

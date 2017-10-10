@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const RestaurantsMap = withScriptjs(withGoogleMap((props) =>
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
+    <GoogleMap defaultZoom={14} defaultCenter={{ lng: 34.7735413, lat: 32.0804841 }}>
       {props.markers.map((marker, index) => (
         <Marker
           key={marker.id}
