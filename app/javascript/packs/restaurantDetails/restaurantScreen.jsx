@@ -34,7 +34,7 @@ export default class RestaurantScreen extends React.Component {
 
   updateReviewsList = (review) => {
     const restaurant = this.state.restaurant;
-    restaurant.reviews = [...restaurant.reviews, review]
+    restaurant.reviews = [...restaurant.reviews, review];
     this.setState({ restaurant })
   }
 
