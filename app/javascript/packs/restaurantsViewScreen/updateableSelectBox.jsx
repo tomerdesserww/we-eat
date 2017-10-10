@@ -1,5 +1,4 @@
 import React from 'react';
-import cuisineToSymbolMapper from '../services/cuisineToSymbolMapper';
 
 export default class UpdateableSelectBox extends React.Component {
   handleChange = (e) => {

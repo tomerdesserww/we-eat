@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../services/restaurantsProvider';
+import { restaurantsProvider } from '../services/DataProvider';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 
 export default class CreateRestaurantScreen extends React.Component {

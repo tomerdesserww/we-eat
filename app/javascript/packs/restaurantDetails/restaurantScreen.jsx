@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../../services/restaurantsProvider';
+import { restaurantsProvider } from '../../services/DataProvider';
 import { cuisineToSymbolMapper } from '../../services/cuisineToSymbolMapper';
 import ReviewLine from './reviewLine';
 import AddReview from './addReview';
@@ -16,7 +16,8 @@ export default class RestaurantScreen extends React.Component {
       reviews: []
     },
     shouldShowAddReview: false
-  };
+  }
+
   setRestaurants = (restaurant) => {
     this.setState({ restaurant });
   };
@@ -33,14 +34,8 @@ export default class RestaurantScreen extends React.Component {
 
   updateReviewsList = (review) => {
     const restaurant = this.state.restaurant;
-
-    this.setState({
-      restaurant: {
-        ...restaurant,
-        reviews: [...restaurant.reviews, review]
-      },
-      shouldShowAddReview: false
-    })
+    restaurant.reviews = [...restaurant.reviews, review]
+    this.setState({ restaurant })
   }
 
   render () {

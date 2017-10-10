@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../../services/restaurantsProvider';
+import { restaurantsProvider } from '../../services/DataProvider';
 
 export default class AddReview extends React.Component {
   state ={
