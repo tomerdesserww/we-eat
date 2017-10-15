@@ -9,14 +9,9 @@ export default class SelectionFilters extends React.Component{
   }
 
   componentWillMount(){
-    let filters = filtersProvider.provide();
-    dataProvider.get('/cuisine').then((cuisines) => {
-      var cuisineFilters = cuisines.map((cuisine) => {
-        return {[cuisine.name]: cuisine.name}
-      })
-      filters.push({cuisine: cuisineFilters})
+    filtersProvider.provide().then((filters) => {
       this.setState({filters})
-    })
+    });
   }
 
   render(){

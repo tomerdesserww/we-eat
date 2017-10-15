@@ -1,6 +1,8 @@
+import { dataProvider } from './DataProvider';
+
 export class FiltersProvider {
   provide () {
-    return [
+    var filters = [
       {
         rating: [
           { 0: 'All' },
@@ -19,6 +21,14 @@ export class FiltersProvider {
         ],
       },
     ];
+
+    return dataProvider.get('/cuisine').then((cuisines) => {
+      var cuisineFilters = cuisines.map((cuisine) => {
+        return {[cuisine.name]: cuisine.name}
+      })
+      filters.push({cuisine: cuisineFilters})
+      return filters;
+    })
   }
 }
 
