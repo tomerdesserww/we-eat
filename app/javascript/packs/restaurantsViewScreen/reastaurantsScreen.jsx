@@ -1,6 +1,6 @@
 import React from 'react';
 import Restaurants from './restaurants';
-import { restaurantsProvider } from '../../services/DataProvider';
+import { dataProvider } from '../../services/DataProvider';
 import SelectionFilters from './selectionFilters';
 import RestaurantsGoogleMap from './restaurantsMap';
 
@@ -18,7 +18,7 @@ export default class RestaurantsScreen extends React.Component {
   };
 
   componentWillMount () {
-    restaurantsProvider.get('/restaurants')
+    dataProvider.get('/restaurants')
       .then(this.setRestaurants)
       .catch(console.error);
   }

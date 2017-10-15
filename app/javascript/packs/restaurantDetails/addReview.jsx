@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../../services/DataProvider';
+import { dataProvider } from '../../services/DataProvider';
 
 export default class AddReview extends React.Component {
   state ={
@@ -12,7 +12,7 @@ export default class AddReview extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    restaurantsProvider.post('/review', this.state).then(
+    dataProvider.post('/review', this.state).then(
       response => this.props.reviewAdded(response),
       error => console.log('An error occurred.', error)
     );

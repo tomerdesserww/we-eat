@@ -3,8 +3,8 @@ export class RestaurantToMarkerMapper{
     const marker = {
       id: restaurant.id,
       position: {
-        lat: restaurant.restaurant_reviews_metadatum.restaurant_location_lat,
-        lng: restaurant.restaurant_reviews_metadatum.restaurant_location_lng,
+        lat: restaurant.latitude,
+        lng: restaurant.longitude,
       },
       text: restaurant.name,
     };

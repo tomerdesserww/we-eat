@@ -1,31 +1,25 @@
-export default class cuisineToSymbolMapper {
-  static provide () {
+export class FiltersProvider {
+  provide () {
     return [
       {
         rating: [
           { 0: 'All' },
           { 1: '1+' },
           { 2: '2+' },
-          { 3: '3' }
-        ]
+          { 3: '3' },
+        ],
       },
       {
-        cuisine: [
-          { all: 'All' },
-          { burger: 'Burger' },
-          { sushi: 'Sushi' },
-          { bakery: 'Bakery' }
-        ]
+        deliveryTime: [
+          { all: 'Any time' },
+          { 15: '15 Minutes' },
+          { 30: '30 Minutes' },
+          { 60: '60 Minutes' },
+          { 120: '120 Minutes' },
+        ],
       },
-      {
-        maximumDeliveryTime: [
-          {all: 'Any time'},
-          {15: '15 Minutes'},
-          {30: '30 Minutes'},
-          {60: '60 Minutes'},
-          {120: '120 Minutes'}
-        ]
-      }
     ];
   }
 }
+
+export let filtersProvider = new FiltersProvider();

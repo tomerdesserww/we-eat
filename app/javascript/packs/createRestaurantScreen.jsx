@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../services/DataProvider';
+import { dataProvider } from '../services/DataProvider';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 
 export default class CreateRestaurantScreen extends React.Component {
@@ -24,7 +24,7 @@ export default class CreateRestaurantScreen extends React.Component {
     geocodeByAddress(this.state.address).then(results => {
         const location = results[0].geometry.location;
         this.setState({ lat: location.lat(), lng: location.lng() });
-        restaurantsProvider.post('/restaurants', this.state).then(
+        dataProvider.post('/restaurants', this.state).then(
           response => this.props.history.push('/'),
           error => console.log('An error occurred.', error),
         );

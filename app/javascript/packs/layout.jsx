@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import RestaurantsScreen from './restaurantsViewScreen/reastaurantsScreen';
 import CreateRestaurantScreen from './createRestaurantScreen';
-import Header from './header';
+import Header from './header/header';
 import RestaurantScreen from './restaurantDetails/restaurantScreen';
 
 export default class Layout extends React.Component {
@@ -11,7 +11,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
+          <div className="app-container">
             <Header/>
             <Route exact path='/' component={RestaurantsScreen}/>
             <Route exact path='/create' component={CreateRestaurantScreen}/>

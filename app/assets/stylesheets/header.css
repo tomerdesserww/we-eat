@@ -1,0 +1,14 @@
+.menu{
+    background-color: black;
+}
+.menu-item {
+    text-align: center;
+    width: 50%;
+    color: white;
+    display: inline-block;
+}
+
+.menu-item.selected{
+    background-color: white;
+    color: black;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { restaurantsProvider } from '../../services/DataProvider';
+import { dataProvider } from '../../services/DataProvider';
 import { cuisineToSymbolMapper } from '../../services/cuisineToSymbolMapper';
 import ReviewLine from './reviewLine';
 import AddReview from './addReview';
@@ -23,7 +23,7 @@ export default class RestaurantScreen extends React.Component {
   };
 
   componentWillMount () {
-    restaurantsProvider.get('/restaurants/' + this.props.match.params.name)
+    dataProvider.get('/restaurants/' + this.props.match.params.name)
       .then(this.setRestaurants)
       .catch(console.error);
   }

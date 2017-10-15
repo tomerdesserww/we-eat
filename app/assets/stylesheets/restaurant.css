@@ -11,7 +11,33 @@
     display: inline-block;
 }
 
+.restaurants-menu{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.restaurants-map{
+    width: 70%;
+    display: inline-block;
+}
+
 .cuisine-font{
     font-size: 30px;
     font-family: ef_cuisinesregular;
+}
+
+.filter-container{
+    width: 30%;
+    display: inline-block;
+    padding-right: 1.6%;
+    padding-left: 1.6%;
+}
+
+.filter-select-box{
+    width: 100%;
+}
+
+.filter-text {
+
 }

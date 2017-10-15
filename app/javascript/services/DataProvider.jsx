@@ -1,4 +1,4 @@
-export class RestaurantsProvider{
+export class DataProvider{
   get (url) {
     return fetch(url)
       .then(response => response.json());
@@ -15,4 +15,4 @@ export class RestaurantsProvider{
   }
 }
 
-export let restaurantsProvider = new RestaurantsProvider();
+export let dataProvider = new DataProvider();
