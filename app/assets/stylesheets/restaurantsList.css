@@ -1,0 +1,76 @@
+.three-stars {
+    background: url('./3-stars.png') no-repeat;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.ten-bis-icon {
+    background: url('./10-bis.jpeg') no-repeat;
+    height: 20px;
+    width: 40px;
+    display: inline-block;
+}
+
+.restaurants-menu {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.restaurants-map {
+    width: 70%;
+    display: inline-block;
+}
+
+.cuisine-font {
+    font-size: 30px;
+    font-family: ef_cuisinesregular;
+}
+
+.filter-container {
+    width: 30%;
+    display: inline-block;
+    padding: 10px 1.6%;
+}
+
+.filter-select-box {
+    width: 100%;
+}
+
+.restaurant-line {
+    display: inline-block;
+    display: inline-block;
+    padding: 5px 0;
+    text-align: right;
+    border: 1px solid;
+    width: 90%;
+    color: black;
+    font-size: 13px;
+}
+
+.restaurant-line-item {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.restaurant-name{
+    color: #333333;
+    font-size: 15px;
+}
+
+.restaurant-address{
+    color: #999999;
+}
+.restaurant-line-icon {
+    width: 20%;
+}
+
+.restaurant-line-details {
+    padding: 0 5%;
+    width: 50%;
+}
+
+.restaurant-icon {
+    width: 30px;
+}

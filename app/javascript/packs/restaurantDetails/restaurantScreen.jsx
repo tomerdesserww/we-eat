@@ -1,8 +1,7 @@
 import React from 'react';
 import { dataProvider } from '../../services/DataProvider';
 import { cuisineToSymbolMapper } from '../../services/cuisineToSymbolMapper';
-import ReviewLine from './reviewLine';
-import AddReview from './addReview';
+import RestaurantReviews from './restaurantReviews';
 
 export default class RestaurantScreen extends React.Component {
   state = {
@@ -13,10 +12,9 @@ export default class RestaurantScreen extends React.Component {
       cuisine: {
         name: '',
       },
-      reviews: []
-    },
-    shouldShowAddReview: false
-  }
+      reviews: [],
+    }
+  };
 
   setRestaurants = (restaurant) => {
     this.setState({ restaurant });
@@ -28,32 +26,25 @@ export default class RestaurantScreen extends React.Component {
       .catch(console.error);
   }
 
-  toggleAddReviewSection = () => {
-    this.setState({shouldShowAddReview: !this.state.shouldShowAddReview});
-  }
-
   updateReviewsList = (review) => {
     const restaurant = this.state.restaurant;
     restaurant.reviews = [...restaurant.reviews, review];
-    this.setState({ restaurant })
-  }
+    this.setState({ restaurant });
+  };
 
   render () {
     var restaurant = this.state.restaurant;
     return (
-      <div>
-        <span>{restaurant.name}</span>
+      <div className='restaurant-screen'>
+        <h1>{restaurant.name}</h1>
+        <h2>{restaurant.address}</h2>
         <span className='three-stars'
               style={{ width: 14 * restaurant.restaurant_reviews_metadatum.avarage_score }}/>
-        <span className='cuisine-font'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
-        { restaurant.does_accept_10bis &&
-        <span className='ten-bis-icon'></span>
+        <span className='cuisine-font cuisine-icon'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
+        {restaurant.does_accept_10bis &&
+        <div><span className='ten-bis-icon'></span></div>
         }
-        { restaurant.reviews.map(item => <ReviewLine review={item} key={item.reviewer}/>) }
-        <button onClick={this.toggleAddReviewSection}>+</button>
-        { this.state.shouldShowAddReview &&
-          <AddReview restaurantId={restaurant.id} reviewAdded={this.updateReviewsList}/>
-        }
+        <RestaurantReviews updateReviewList={this.updateReviewsList} reviews={restaurant.reviews} restaurantId={restaurant.id}/>
       </div>
     );
   }
