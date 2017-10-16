@@ -22,7 +22,7 @@ export default class Header extends React.Component {
         { this.items.map(item => <Link className={'menu-item' + this.isSelected(item.name)}
                                        to={item.url}
                                        onClick={this.updateSelected}
-                                       key={item.name}>{item.name}</Link>) }
+                                       key={item.name}><span>{item.name}</span></Link>) }
       </div>
     );
   }

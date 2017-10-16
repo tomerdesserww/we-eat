@@ -1,7 +1,6 @@
 import React from 'react';
 import UpdateableSelectBox from './updateableSelectBox';
 import { filtersProvider } from '../../services/filtersProvider';
-import { dataProvider } from '../../services/DataProvider';
 
 export default class SelectionFilters extends React.Component{
   state = {
