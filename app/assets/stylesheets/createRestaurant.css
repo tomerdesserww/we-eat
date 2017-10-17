@@ -1,0 +1,13 @@
+.add-restaurant-form {
+    background-color: lightblue;
+    padding: 4px;
+    width: 400px;
+    border: 1px solid;
+    margin: 10px auto;
+}
+
+.create-restaurant-line{
+    display: block;
+    width: 90%;
+    margin: 5px 5%;
+}

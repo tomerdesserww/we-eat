@@ -32,8 +32,7 @@ export default class CreateRestaurantScreen extends React.Component {
         const location = results[0].geometry.location;
         this.setState({ lat: location.lat(), lng: location.lng() });
         dataProvider.post('/restaurants', this.state).then(
-          response => this.props.history.push('/'),
-          error => console.log('An error occurred.', error),
+          response => this.props.history.push('/')
         );
       },
     );
@@ -41,41 +40,40 @@ export default class CreateRestaurantScreen extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form onSubmit={this.handleSubmit} className='add-restaurant-form'>
+        <label className='create-restaurant-line'>
           Name:
           <input type="text" name="name" onChange={this.handleChange}/>
-        </label><br/>
-        <label>
+        </label>
+        <label className='create-restaurant-line'>
           Address:
           <PlacesAutocomplete inputProps={{
             onChange: this.updateAddress,
             value: this.state.address,
             placeholder: 'Address..',
             name: 'address',
-          }}
-          />
-        </label><br/>
-        <label>
+          }} styles={{input: { width: '70%', padding: '5px 0'}}}
+        />
+        </label>
+        <label className='create-restaurant-line'>
           Cuisine:
           <select onChange={this.handleChange} name="cuisine" defaultValue='default'>
             <option disabled='disabled' value='default'>Please Select</option>
             {this.state.cuisinesList.map(cuisine => <option value={cuisine.name}>{cuisine.name}</option>)}
           </select>
-        </label><br/>
-        <label>
+        </label>
+        <label className='create-restaurant-line'>
           Accepts 10Bis?
           <select onChange={this.handleChange} name="does_accept_10bis">
             <option value='true'>Yes</option>
             <option value='false'>No</option>
           </select>
-        </label><br/>
-        <label>
+        </label>
+        <label className='create-restaurant-line'>
           Delivery SLA:
           <input type="select" name="delivery_sla_in_minutes" onChange={this.handleChange}/>
-        </label><br/>
-
-        <input type="submit" value="Submit"/>
+        </label>
+        <input type="submit" value="Submit" className='submit-button'/>
       </form>
     );
   }
