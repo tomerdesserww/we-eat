@@ -5,20 +5,17 @@ import CreateRestaurantScreen from './createRestaurantScreen';
 import Header from './header/header';
 import RestaurantScreen from './restaurantDetails/restaurantScreen';
 
-export default class Layout extends React.Component {
-
-  render () {
-    return (
-      <div>
-        <BrowserRouter>
-          <div className="app-container">
-            <Header/>
-            <Route exact path='/' component={RestaurantsScreen}/>
-            <Route exact path='/create' component={CreateRestaurantScreen}/>
-            <Route exact path='/restaurant/:name' component={RestaurantScreen}/>
-          </div>
-        </BrowserRouter>
-      </div>
-    );
-  }
+export default function Layout () {
+  return (
+    <div>
+      <BrowserRouter>
+        <div className="app-container">
+          <Header/>
+          <Route exact path='/' component={RestaurantsScreen}/>
+          <Route exact path='/create' component={CreateRestaurantScreen}/>
+          <Route exact path='/restaurant/:name' component={RestaurantScreen}/>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }

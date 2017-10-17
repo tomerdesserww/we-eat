@@ -15,9 +15,11 @@ export default function RestaurantLine({restaurant}) {
           <span className='three-stars' style={{ width: 14 * restaurant.restaurant_reviews_metadatum.avarage_score }}/>
           <span className='cuisine-font'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
         </div>
-        {restaurant.does_accept_10bis &&
-        <div className=' restaurant-line-item ten-bis-icon restaurant-line-icon'></div>
-        }
+        <div className='restaurant-line-item restaurant-line-icon'>
+          {restaurant.does_accept_10bis &&
+          <div className='ten-bis-icon'></div>
+          }
+        </div>
       </Link><br/>
     </div>
   );

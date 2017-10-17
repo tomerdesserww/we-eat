@@ -9,11 +9,18 @@ export default class CreateRestaurantScreen extends React.Component {
     cuisine: '',
     does_accept_10bis: true,
     delivery_sla_in_minutes: 0,
+    cuisinesList: [],
   };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  componentWillMount () {
+    dataProvider.get('/cuisine').then((cuisinesList) => {
+      this.setState({ cuisinesList });
+    });
+  }
 
   updateAddress = (address) => {
     this.setState({ 'address': address });
@@ -53,9 +60,7 @@ export default class CreateRestaurantScreen extends React.Component {
           Cuisine:
           <select onChange={this.handleChange} name="cuisine" defaultValue='default'>
             <option disabled='disabled' value='default'>Please Select</option>
-            <option value='burger'>Burger</option>
-            <option value='sushi'>Sushi</option>
-            <option value='bakery'>Bakery</option>
+            {this.state.cuisinesList.map(cuisine => <option value={cuisine.name}>{cuisine.name}</option>)}
           </select>
         </label><br/>
         <label>

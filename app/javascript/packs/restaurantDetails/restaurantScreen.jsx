@@ -38,11 +38,11 @@ export default class RestaurantScreen extends React.Component {
       <div className='restaurant-screen'>
         <h1>{restaurant.name}</h1>
         <h2>{restaurant.address}</h2>
-        <span className='three-stars'
-              style={{ width: 14 * restaurant.restaurant_reviews_metadatum.avarage_score }}/>
-        <span className='cuisine-font cuisine-icon'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span>
+        <div><span className='three-stars restaurant-view-info'
+              style={{ width: 14 * restaurant.restaurant_reviews_metadatum.avarage_score }}/></div>
+        <div><span className='cuisine-font cuisine-icon restaurant-view-info'>{cuisineToSymbolMapper.map(restaurant.cuisine.name)}</span></div>
         {restaurant.does_accept_10bis &&
-        <div><span className='ten-bis-icon'></span></div>
+        <div><span className='ten-bis-icon restaurant-view-info'></span></div>
         }
         <RestaurantReviews updateReviewList={this.updateReviewsList} reviews={restaurant.reviews} restaurantId={restaurant.id}/>
       </div>

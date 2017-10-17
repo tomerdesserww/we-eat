@@ -2,8 +2,8 @@
     text-align: center;
 }
 
-.ten-bis-icon, .cuisine-icon{
-    display: block;
+.restaurant-view-info{
+    display: inline-block;
 }
 
 .reviews{
