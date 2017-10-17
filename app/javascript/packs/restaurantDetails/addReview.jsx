@@ -20,7 +20,7 @@ export default class AddReview extends React.Component {
 
   render () {
     return(
-    <form onSubmit={this.handleSubmit}>
+    <form className='add-review-form' onSubmit={this.handleSubmit}>
       <label>
         Name:
         <input type="text" name="reviewer" onChange={this.handleChange}/>
@@ -36,10 +36,10 @@ export default class AddReview extends React.Component {
       </label><br />
       <label>
         Comment:
-        <input type="text" name="comment" onChange={this.handleChange}/>
+        <input type="text" className='comment-section' name="comment" onChange={this.handleChange}/>
       </label><br />
 
-      <input type="submit" value="Submit"/>
+      <input className='submit-button' type="submit" value="Post Review"/>
     </form>
     )
   }

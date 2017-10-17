@@ -1,0 +1,14 @@
+.add-review-form {
+    background-color: lightblue;
+    padding: 4px;
+}
+
+.submit-button{
+    width: 100%;
+    padding: 5px 0;
+}
+
+.comment-section{
+    display: block;
+    width: 98%;
+}

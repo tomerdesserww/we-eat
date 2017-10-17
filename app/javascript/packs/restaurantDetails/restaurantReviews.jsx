@@ -22,7 +22,7 @@ export default class RestaurantReviews extends React.Component {
     return (
       <div className='reviews'>
         {this.props.reviews.map(item => <ReviewLine review={item} key={item.reviewer}/>)}
-        <button onClick={this.toggleAddReviewSection}>+</button>
+        <button onClick={this.toggleAddReviewSection}>Add Review</button>
         {this.state.shouldShowAddReview &&
         <AddReview restaurantId={this.props.restaurantId} reviewAdded={this.updateReviewsList}/>
         }
